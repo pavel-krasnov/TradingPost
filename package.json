@@ -4,7 +4,8 @@
   "description": "Training CRUD application with authentication using Node.js, Express, Mongoose, Passport, MongoDB, EJS, Bootstrap",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Pavel Krasnov",
   "license": "ISC",
