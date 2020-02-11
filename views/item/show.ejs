@@ -1,0 +1,49 @@
+<%- include('../partials/header.ejs') %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<img class="card-img-top" src="<%= item.image %>">
+				<div class="card-body">
+					<div class="card-title">
+						<h4 class="text-right">$<%= item.price %></h4>
+						<h4><a href=""><%= item.name %></a></h4>
+					</div>
+					<div class="card-text">
+						<p><%= item.description %></p>
+					</div>
+					<p>Created by: <%= item.user.username %></p>
+					<% if (currentUser && item.user.id.equals(currentUser._id)) { %>
+						<a href="/items/<%= item._id %>/edit" class="btn btn-primary">Edit</a>
+						<form id="delete-form" action="/items/<%= item._id %>?_method=delete", method="post">
+							<button class="btn btn-danger">Delete</button>
+						</form>
+					<% } %>
+				</div>
+			</div>
+			<div class="card mt-3 p-4">
+				<div class="text-right">
+					<a href="/items/<%= item._id %>/comments/new" class="btn btn-primary">Add a new comment</a>
+				</div>
+				<hr>
+				<% item.comments.forEach((comment) => { %>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="text-right">10 days ago</div>
+							<strong><%= comment.user.username %></strong>
+							<p><%= comment.text %></p>
+							<% if (currentUser && currentUser._id.equals(comment.user.id)) { %>
+								<a href="/items/<%= item._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-primary">Edit</a>
+								<form id="delete-form" action="/items/<%= item._id %>/comments/<%= comment._id %>/?_method=delete", method="post">
+									<button class="btn btn-sm btn-danger">Delete</button>
+								</form>
+							<% } %>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+			<a href="/items" class="btn btn-primary mt-4 mb-4">Go back</a>
+		</div>
+	</div>
+</div>
+<%- include('../partials/footer.ejs') %>
