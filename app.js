@@ -19,7 +19,8 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect("mongodb://localhost/trading_post");
+//mongoose.connect("mongodb://localhost/trading_post");
+mongoose.connect("mongodb+srv://admin:bDNxKBHe9Rf0iEgS@cluster0-qckgb.mongodb.net/test?retryWrites=true&w=majority");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
