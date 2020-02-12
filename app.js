@@ -19,8 +19,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-//mongoose.connect("mongodb://localhost/trading_post");
-mongoose.connect("mongodb+srv://admin:bDNxKBHe9Rf0iEgS@cluster0-qckgb.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
@@ -49,8 +48,4 @@ app.use(authRoutes);
 app.use("/items/:id/comments", commentRoutes);
 app.use("/items", itemRoutes);
 
-app.listen(process.env.PORT, process.env.IP);
-
-/*app.listen(3000, () => {
-	console.log("Listening");
-});*/
+app.listen(process.env.PORT || 3000, process.env.IP);
